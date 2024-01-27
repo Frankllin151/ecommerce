@@ -1,0 +1,10 @@
+import './bootstrap';
+import { createApp } from 'vue';
+import App from '../views/components/App.vue';
+import Nome from "../views/components/Nome.vue";
+import Header from "../views/components/Header.vue";
+const app = createApp();
+app.component('app' , App);
+app.component('nome' , Nome);
+app.component("header" , Header);
+app.mount('#app');

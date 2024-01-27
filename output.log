@@ -1,0 +1,7 @@
+
+  [30;43m WARN [39;49m Failed to listen on 127.0.0.1:8000 (reason: Address already in use).  
+
+  [37;44m INFO [39;49m Server running on [1m[http://127.0.0.1:8001][22m.  
+
+[33m  [39m[33;1mPress Ctrl+C to stop the server[39;22m
+

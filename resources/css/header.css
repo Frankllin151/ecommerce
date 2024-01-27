@@ -1,0 +1,108 @@
+/*Header*/
+.header-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 7%;
+}
+
+.header-top .social a{
+ font-size: 1.2rem ;
+ padding: .5rem;
+ margin-left: .25rem;
+ border-radius: .5rem;
+ background: #eb4d4b;
+ color: #fff;
+}
+
+.header-top .alert p{
+    color: #787878;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+.header-top .alert p b{
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.header-top .actions select{
+    margin-left: 1.5rem;
+    padding: .5rem 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+} 
+
+.header-main{
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 7%;
+    position: relative;
+}
+.header-main.active{
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    z-index: 1000;
+    box-shadow: 0 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.header-main .logo{
+    color: #eb4d4b;
+    font-size: 3rem;
+    font-weight: bolder;
+}
+.header-main .logo i{
+    padding-right: .5rem;
+    color: #130f40;
+
+}
+.header-main .navbar a{
+    font-size: 2rem;
+    color: #130f40;
+    margin: 0 1rem;
+}
+
+.header-main .navbar a:hover{
+    color: #eb4d4b;
+}
+
+.header-main .icons .action-btn{
+    position: relative;
+    font-size: 2.5rem;
+    margin-left: 1.5rem;
+    color: #454545;
+    padding: .5rem;
+    background: #fff;
+}
+.header-main .icons .action-btn a{
+    color: #fff;
+    -webkit-text-stroke: .1rem #130f40;
+}
+.header-main .icons .action-btn a:hover{
+    -webkit-text-stroke: .1rem #eb4d4b;
+}
+
+.header-main .icons .count{
+    position: absolute;
+    top: -.3rem; right: -.2rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    font-weight: 500;
+    color: #fff;
+    background: #eb4d4b;
+    padding: .2rem .4rem;
+    border-radius: 50%;
+}
+
+#menu{
+    font-size: 2.5rem;
+    border: .1rem solid #130f40;
+    color: #130f40;
+    border-radius: .5rem;
+    padding: .8rem 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+/*end header*/
