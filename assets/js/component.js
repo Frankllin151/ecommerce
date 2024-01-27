@@ -5,6 +5,22 @@ function IncludeComponets() {
     const about = document.getElementById("ABOUT");
     const exclusivo  = document.getElementById("EXCLUSIVO");
     const products  = document.getElementById("PRODUCTS");
+    const services  = document.getElementById("SERVICES");
+    const offer = document.getElementById("OFFER");
+    const blog = document.getElementById("BLOG");
+    const footer = document.getElementById("FOOTER");
+
+    fetch("/components/footer.html")
+    .then(response => response.text())
+    .then(data => footer.innerHTML = data);
+
+    fetch("/components/blog.html")
+    .then(response => response.text())
+    .then(data => blog.innerHTML = data);
+
+    fetch("/components/offer.html")
+    .then(response => response.text())
+    .then(data => offer.innerHTML = data);
 
     fetch("/components/modal.html")
     .then(response => response.text())
@@ -30,6 +46,10 @@ function IncludeComponets() {
     fetch("/components/products.html")
     .then(response => response.text())
     .then(data => products.innerHTML = data);
+
+    fetch("/components/services.html")
+    .then(response => response.text())
+    .then(data => services.innerHTML = data);
 
    
 
