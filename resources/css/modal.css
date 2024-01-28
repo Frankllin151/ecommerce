@@ -1,0 +1,89 @@
+/**Modal*/
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    } 
+    to{
+        opacity: 1;
+    }
+}
+
+.modal{
+   display: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.1);
+    animation: fadeIn .5s ease;
+
+}
+
+.modal .container{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.modal .container .image img{
+    flex: 1 1 20rem;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.modal .container .content{
+    flex: 1 1 60rem;
+    padding: 0 2rem;
+
+}
+ .modal .container .content h2{
+    font-size: 2.4rem ;
+    color: #130f40;
+ }
+ .modal .container .content p{
+    font-size: 1.2rem ;
+    padding: 1rem 0;
+    color: #666;
+ }
+
+ .modal .container .content form{
+    margin-top:  1rem;
+    display: flex;
+    flex-direction: column;
+ }
+
+ .modal .container .content form input{
+    margin-bottom: 1.5rem ;
+    padding: 1rem;
+    border: .1rem solid #eee;
+    border-radius: .5rem;
+ }
+
+ .modal .container .content form .btn{
+   display: flex;
+   justify-content: center;
+   margin: auto;
+ }
+
+ .modal .container  .close{
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    border: .1rem solid #eb4d4b;
+    color: #eb4d4b;
+    font-size: 1.8rem;
+    padding: .1rem .7rem;
+    border-radius: .5rem;
+    cursor: pointer;
+ }
+ .modal .container .close:hover{
+    background: #eb4d4b;
+    color: #fff;
+}

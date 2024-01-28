@@ -1,5 +1,7 @@
 
 @import url(/resources/css/header.css);
+@import url(/resources/css/modal.css);
+@import url(/resources/css/banne.css);
 
 *{
     font-family:  "Poppins" , sans-serif;
@@ -70,3 +72,88 @@ cursor: pointer;
 }
 
 
+
+
+
+
+@media(max-width:991px){
+    html{
+        font-size: 55%;
+    }
+
+    .modal .container{
+        width: 75rem;
+    }
+
+    .modal .container .image img{
+        flex: 1 1 30rem;
+    }
+
+    .header-top{
+        padding: 1.4rem;
+    }
+
+    .header-main{
+        padding: 2rem;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .modal .container{
+        width: 45rem;
+    }
+
+    .modal .container .image img{
+        display: none;
+    }
+
+    .modal .container .content{
+        text-align: center;
+        margin: 5rem 0;
+    }
+
+    .header-top .social{
+        display: none;
+    }
+
+    #menu{
+        display: inline-block;
+    }
+
+    .header-main .navbar{
+        position: absolute;
+        top: 99%; left: 0; right: 0;
+        background: #fff;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        border-top: .1rem solid rgba(0, 0, 0, 0.3);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    .header-main .navbar.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .header-main .navbar a{
+        font-size: 2rem;
+        display: block;
+        margin: 2rem;
+    }
+
+    .header-main .logo{
+        font-size: 4rem;
+    }
+
+}
+
+@media(max-width:450px){
+    html{
+        font-size: 50%;
+    }
+
+    .order form .inputBox .input{
+        width: 100%;
+    }
+
+}
