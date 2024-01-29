@@ -3,21 +3,34 @@ export default {
     name:"Modal",
 data() {
     return {
-        imagem:"./images/blog-1.webp"
+        imagem:"./images/blog-1.webp", 
+        modalVisible: false
     }
 },
 computed: {
     caminhoCompletoDaImagem() {
       return asset(this.imagem);
     }
+  }, 
+  mounted(){
+    setTimeout(() =>{
+        this.modalVisible = true;
+    }, 5000)
+  }, 
+  methods:{
+    closeModal(){
+        this.modalVisible = false;
+    }
   }
+
+
 }
 </script>
 <template>
-    <div class="modal" id="modal">
+    <div class="modal" v-if="modalVisible"  id="modal">
 
         <div class="container">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" @click="closeModal" >&times;</span>
             <div class="image">
                 <img :src="imagem" alt="Descriçao da imagem">
             </div>

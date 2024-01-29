@@ -33,7 +33,7 @@
 
 
 
-    <div class="header-main " >
+    <div class="header-main  " >
         <div id="menu" class="fas fa-bars"></div>
 
         <a href="" class="logo"><i class="fas fa-gem"></i> jewel</a>
@@ -71,7 +71,7 @@
 
  export default {
   
-    name: 'Header' 
+  
  }
   </script>
   
