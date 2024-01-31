@@ -5,6 +5,14 @@
 @import url(/resources/css/about.css);
 @import url(/resources/css/exclusivo.css);
 @import url(/resources/css/products.css);
+@import url(/resources/css/blog.css);
+@import url(/resources/css/footer.css);
+@import url(/resources/css/offer.css);
+@import url(/resources/css/services.css);
+
+
+
+
 *{
     font-family:  "Poppins" , sans-serif;
     margin: 0; padding: 0;

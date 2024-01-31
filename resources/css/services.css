@@ -1,0 +1,41 @@
+/*services*/
+
+.services .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.services .box-container .box{
+    flex: 1 1 30rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 1rem;
+}
+
+.services .box-container .box:hover{
+    background: #fff6f6;
+}
+
+.services .box-container .box i {
+    padding: 1rem 0;
+    font-size: 3.5rem;
+    color: #eb4d4b;
+}
+
+.services .box-container .box h3{
+    font-size: 2.2rem;
+    color: #130f40;
+}
+
+.services .box-container .box p{
+    font-size: 1.7rem;
+    color: #666;
+    padding: 1rem;
+}
+
+.services .box-container .box .btn{
+    margin-bottom: 1rem;
+    margin-top: .5rem;
+}

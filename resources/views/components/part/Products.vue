@@ -1,6 +1,18 @@
 <script>
 export default {
-    
+    data(){
+        return{
+           
+            imgProduct: "./images/product-1.webp",
+           
+        }
+       
+    }, 
+    computed:{
+            imgPorudctway(){
+                return asset(this.imgProduct);
+            }, 
+        }   
 }
 </script>
 <template>
@@ -11,7 +23,7 @@ export default {
         <div class="box-container">
             <div class="box">
                 <div class="image">
-                    <img src="/assets/images/product-1.webp" alt="">
+                    <img :src="imgProduct" alt="">
                     <div class="icons">
                         <a href="#" class="fas fa-shopping-bag"></a>
                         <a href="#" class="fas fa-heart"></a>
@@ -40,7 +52,7 @@ export default {
             </div>
             <div class="box">
                 <div class="image">
-                    <img src="/assets/images/product-1.webp" alt="">
+                    <img :src="imgProduct" alt="">
                     <div class="icons">
                         <a href="#" class="fas fa-shopping-bag"></a>
                         <a href="#" class="fas fa-heart"></a>
@@ -69,7 +81,7 @@ export default {
             </div>
             <div class="box">
                 <div class="image">
-                    <img src="/assets/images/product-1.webp" alt="">
+                    <img :src="imgProduct" alt="">
                     <div class="icons">
                         <a href="#" class="fas fa-shopping-bag"></a>
                         <a href="#" class="fas fa-heart"></a>
@@ -98,7 +110,7 @@ export default {
             </div>
             <div class="box">
                 <div class="image">
-                    <img src="/assets/images/product-1.webp" alt="">
+                    <img :src="imgProduct" alt="">
                     <div class="icons">
                         <a href="#" class="fas fa-shopping-bag"></a>
                         <a href="#" class="fas fa-heart"></a>
@@ -127,7 +139,7 @@ export default {
             </div>
             <div class="box">
                 <div class="image">
-                    <img src="/assets/images/product-1.webp" alt="">
+                    <img :src="imgProduct" alt="">
                     <div class="icons">
                         <a href="#" class="fas fa-shopping-bag"></a>
                         <a href="#" class="fas fa-heart"></a>

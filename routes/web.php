@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Inertia\Inertia;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,4 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/nomes', function () {
-    return view('products');
-});
+

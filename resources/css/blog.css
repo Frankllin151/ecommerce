@@ -1,0 +1,72 @@
+/*blog*/
+.blogs .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+    gap: 1.5rem;
+}
+
+.blogs .box-container .box{
+    background: #fff6f6;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.blogs .box-container .box .image{
+    height: 25rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.blogs .box-container .box .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.blogs .box-container .box:hover .image img{
+    transform: scale(1.1);
+}
+
+.blogs .box-container .box .content{
+    padding: 2rem;
+}
+
+.blogs .box-container .box .content .link{
+    font-size: 2rem;
+    color: #130f40;
+}
+
+.blogs .box-container .box .content .link:hover{
+    color: #eb4d4b;
+}
+
+.blogs .box-container .box .content p{
+    padding: 1rem 0;
+    font-size: 1.4rem;
+    color: #444;
+    line-height: 2;
+}
+
+.blogs .box-container .box .content .icon{
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blogs .box-container .box .content .icon a{
+    font-size: 1.4rem;
+    color: #444;
+}
+
+.blogs .box-container .box .content .icon a:hover{
+    color: #eb4d4b;
+}
+
+.blogs .box-container .box .content .icon a i{
+    padding-right: .5rem;
+    color: #eb4d4b;
+}
+
+/* end */
