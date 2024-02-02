@@ -9,6 +9,7 @@
 <SpecialOffer/>
 <Blog/>
 <Footer/>
+<Cart/>
 
   </template>
   
@@ -23,6 +24,7 @@ import Service from './part/Services.vue';
 import SpecialOffer from "./part/SpecialOffer.vue";
 import Blog from "./part/Blog.vue";
 import Footer from "./part/Footer.vue";
+import Cart from  "./part/Cart.vue";
   export default {
    components:{
        Header, 
@@ -34,7 +36,8 @@ import Footer from "./part/Footer.vue";
        Service, 
        SpecialOffer, 
        Blog,
-       Footer
+       Footer, 
+       Cart
    },
    
    
