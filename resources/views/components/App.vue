@@ -9,7 +9,7 @@
 <SpecialOffer/>
 <Blog/>
 <Footer/>
-<Cart/>
+
 
   </template>
   
