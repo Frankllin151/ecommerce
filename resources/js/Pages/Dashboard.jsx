@@ -1,3 +1,4 @@
+import PeriodoPedido from '@/Components/PeriodoPedido';
 import RevenueStats from '@/Components/RevenueStats';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
@@ -16,7 +17,7 @@ export default function Dashboard() {
              You're logged in!
              </div>
              <RevenueStats current={15000} previous={12000} thirdMonth={11000} />
-          
+          <PeriodoPedido/>
         </AuthenticatedLayout>
     );
 }

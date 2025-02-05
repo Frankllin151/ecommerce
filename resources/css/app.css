@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Para navegadores WebKit (Chrome, Edge, Safari) */
+.container-filtro::-webkit-scrollbar {
+  width: 3px; /* Largura do scroll */
+}
+
+.container-filtro::-webkit-scrollbar-thumb {
+  background-color: aquamarine; /* Cor da barra */
+  border-radius: 10px; /* Borda arredondada */
+}
+
+.container-filtro::-webkit-scrollbar-track {
+  background-color: #1F2937; /* Cor do fundo */
+}
+
+/* Para Firefox */
+@supports (scrollbar-color: auto) {
+  .container-filtro {
+    scrollbar-width: thin; /* Reduz a largura */
+    scrollbar-color: #D1D5DB #1F2937; /* Cor do thumb e track */
+  }
+}
