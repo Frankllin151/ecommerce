@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PrimaryButton from "./PrimaryButton";
 import Dropdown from '@/Components/Dropdown'
-
+import BarChart from "./BarChart";
 
 
 export default function PeriodoPedido()
@@ -124,7 +124,7 @@ export default function PeriodoPedido()
   ))}
    </div>
  
-   <div className="bg-white w-full md:w-1/2 border rounded-lg shadow-sm p-4 cursor-pointer">ola</div>
+   <div className="bg-white w-full max-h-80 md:w-1/2 border rounded-lg shadow-sm p-4 cursor-pointer"><BarChart /></div>
     </div>
     </>
   )
