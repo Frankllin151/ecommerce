@@ -8,22 +8,26 @@ export default function BarChart() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    const data = [65, 59, 800, 1, 406, 55, 40, 30, 75, 90, 85, 70];
+    const data = [65, 59, 800, 1, 406, 505, 40, 30, 75, 900, 85, 70];
     const labels = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
     const barWidth = 30;
-    const gap = 15;
+    const gap = 5;
     const chartHeight = 280;
+    const maxValue = Math.max(...data); // Encontra o maior valor para normalizar as alturas
 
     function drawChart() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       data.forEach((value, index) => {
         const x = index * (barWidth + gap);
-        const y = chartHeight - value;
+        
+        // Normaliza a altura da barra
+        const scaledHeight = (value / maxValue) * chartHeight;
+        const y = chartHeight - scaledHeight;
 
         ctx.fillStyle = "#4338CA";
-        ctx.fillRect(x, y, barWidth, value); // Desenha a barra
+        ctx.fillRect(x, y, barWidth, scaledHeight); // Desenha a barra corretamente escalada
 
         // Labels no eixo X
         ctx.fillStyle = "#000";
@@ -41,7 +45,8 @@ export default function BarChart() {
 
       data.forEach((value, index) => {
         const x = index * (barWidth + gap);
-        const y = chartHeight - value;
+        const scaledHeight = (value / maxValue) * chartHeight;
+        const y = chartHeight - scaledHeight;
 
         if (mouseX >= x && mouseX <= x + barWidth && mouseY >= y && mouseY <= chartHeight) {
           setTooltip({ show: true, x: mouseX, y: mouseY, value });

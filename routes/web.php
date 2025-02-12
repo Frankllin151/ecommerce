@@ -14,7 +14,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', [TipoUsuarioController::class, 'tipoUsuario'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [TipoUsuarioController::class, 'tipoUsuario'])->middleware(['admin', 'verified'])->name('dashboard');
+
+Route::get("/todoproduto" , [TipoUsuarioController::class, "todoProduto"])->middleware(["admin" , 'verified'])->name('todoproduto');
 
 Route::get('/minha-conta' , [TipoUsuarioController::class , 'minhaConta'])->middleware(['auth', 'verified'])->name('minha-conta');
 Route::middleware('auth')->group(function () {

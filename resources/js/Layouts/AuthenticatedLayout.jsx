@@ -24,10 +24,14 @@ console.log(user);
 
             <nav className="mt-5 gap-1 flex flex-col ">
                 <NavLink href={route("dashboard")} active={route().current("dashboard")}>
-                    Dashboard
+                   Inicio
                 </NavLink>
                 <NavLink href={route("profile.edit")} active={route().current("profile.edit")}>
                     Perfil
+                </NavLink>
+         
+                <NavLink href={route("todoproduto")} active={route().current("todoproduto")}>
+                   Todos os Produtos
                 </NavLink>
             </nav>
         </div>
