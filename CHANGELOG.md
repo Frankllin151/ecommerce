@@ -6,3 +6,4 @@
 # [1.0.0] - 2025-02-12
 - Modificação no Middleware adicionado class admin 
 - Modificação no codigo do arquivo controller (TipoUsuario) 
+# [1.0.0] - 2025-02-14
