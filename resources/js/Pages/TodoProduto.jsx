@@ -26,7 +26,7 @@ export default function TodoProduto()
             className="mt-4 px-4 py-2 bg-gray-500 text-white rounded" 
             onClick={() => setShowModal(false)}
           >
-            Fechar
+            Formulario 
           </button>
         </div>
       </Modal>
