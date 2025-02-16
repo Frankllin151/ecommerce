@@ -8,3 +8,5 @@
 - Modificação no codigo do arquivo controller (TipoUsuario) 
 # [1.0.0] - 2025-02-14
 - Adicionado modal para pagina de produto
+# [1.0.0] - 2025-02-16 
+- Formulario modal para enviar dados de adicionar produto
