@@ -10,3 +10,5 @@
 - Adicionado modal para pagina de produto
 # [1.0.0] - 2025-02-16 
 - Formulario modal para enviar dados de adicionar produto
+# [1.0.0] - 2025-02-18
+- Teste de formulario
