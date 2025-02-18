@@ -71,10 +71,14 @@ const handleSubmit = (e) => {
                 <label>
                     <input type="radio" name="grupo" value="variavel" checked={formData.grupo === "variavel"} onChange={handleChange} /> Variável
                 </label>
+                <label>
+                  <input type="radio" name="grupo" value="simple" checked={formData.grupo === "simple"} onChange={handleChange} />
+                  Simples
+                </label>
             </div>
 
             <button type="submit" className="bg-indigo-500 text-white px-4 py-2 rounded-md">
-                Enviar
+               Add
             </button>
         </form>
       </Modal>
