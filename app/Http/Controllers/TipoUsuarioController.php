@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
-use App\Http\Middleware\AdminMiddleware;
+
 
 
 class TipoUsuarioController extends Controller

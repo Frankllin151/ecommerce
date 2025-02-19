@@ -12,3 +12,6 @@
 - Formulario modal para enviar dados de adicionar produto
 # [1.0.0] - 2025-02-18
 - Modificação do modal/formulario
+# [1.0.0] - 2025-02-19 
+- Para adicionar os produtos de varivavel, simple e grupo 
+- coloquei uma routa para isso
