@@ -15,3 +15,6 @@
 # [1.0.0] - 2025-02-19 
 - Para adicionar os produtos de varivavel, simple e grupo 
 - coloquei uma routa para isso
+# [1.0.0] - 2025-02-20
+- modal de media 
+- lógica para mudar os preenchimentos dos dados (estoque e Geral)
