@@ -18,3 +18,6 @@
 # [1.0.0] - 2025-02-20
 - modal de media 
 - lógica para mudar os preenchimentos dos dados (estoque e Geral)
+# [1.0.0] - 2025-02-21 
+- Entrega colocar (comprimento, largura e altura ) 
+- Estoque finalização
