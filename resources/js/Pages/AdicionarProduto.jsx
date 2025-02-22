@@ -5,6 +5,46 @@ import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import Modal from '@/Components/Modal';
 import Checkbox from '@/Components/Checkbox';
+import Select from 'react-select';
+import makeAnimated  from "react-select/animated"
+
+
+export const colourOptions = [
+  { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
+  { value: 'blue', label: 'Blue', color: '#0052CC', isDisabled: true },
+  { value: 'purple', label: 'Purple', color: '#5243AA' },
+  { value: 'red', label: 'Red', color: '#FF5630', isFixed: true },
+  { value: 'orange', label: 'Orange', color: '#FF8B00' },
+  { value: 'yellow', label: 'Yellow', color: '#FFC400' },
+  { value: 'green', label: 'Green', color: '#36B37E' },
+  { value: 'forest', label: 'Forest', color: '#00875A' },
+  { value: 'slate', label: 'Slate', color: '#253858' },
+  { value: 'silver', label: 'Silver', color: '#666666' },
+];
+
+// Opções de sabores
+export const flavourOptions = [
+  { value: 'vanilla', label: 'Vanilla', rating: 'safe' },
+  { value: 'chocolate', label: 'Chocolate', rating: 'good' },
+  { value: 'strawberry', label: 'Strawberry', rating: 'wild' },
+  { value: 'salted-caramel', label: 'Salted Caramel', rating: 'crazy' },
+];
+
+// Opções agrupadas
+export const groupedOptions = [
+  {
+    label: 'Colours',
+    options: colourOptions,
+  },
+  {
+    label: 'Flavours',
+    options: flavourOptions,
+  },
+];
+
+const animatedComponents = makeAnimated();
+
+
 export default function AdicionarProduto() {
  const [selectDado , setSelectDado] = useState("simple");
  const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,6 +85,13 @@ export default function AdicionarProduto() {
     ]
   }
 ]);
+
+const produtosSimulados = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+];
+
 const typePermissao = [
   {id:1 , permitir:"Não permitir"}, 
   {id:2 , permitir:"Permitir, mas informar o cliente"},
@@ -349,8 +396,24 @@ Escolher arquivo:
     </div>
    }
    {listagem === "Produtos Relacionados" && 
-   <div className='mt-3'>
-    Produto Relacionado
+   <div className='mt-3 '>
+    <InputLabel>
+    Upsells: 
+    <Select
+        closeMenuOnSelect={false}
+        components={animatedComponents}
+        defaultValue={[colourOptions[4], colourOptions[5]]}
+        isMulti
+        options={colourOptions}
+      />
+    </InputLabel>
+    <InputLabel className='mt-2'>
+    Venda Cruzada: <TextInput 
+    placeholder="Pesquisar produto"
+    name="vendaCruzada" 
+    id="vendaCruzada"
+    />
+    </InputLabel>
    </div>
    }
     </div>

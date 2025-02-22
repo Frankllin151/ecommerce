@@ -21,3 +21,5 @@
 # [1.0.0] - 2025-02-21 
 - Entrega colocar (comprimento, largura e altura ) 
 - Estoque finalização
+# [1.0.0] - 2025-02-22 
+- Multi Select no Adicionar Produto (para produto relacionados)
