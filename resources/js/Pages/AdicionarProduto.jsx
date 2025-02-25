@@ -1,48 +1,11 @@
 import PrimaryButton from '@/Components/PrimaryButton';
 import AuthenticatedLayout from '../Layouts/AuthenticatedLayout';
 import  {useState}  from 'react';
-import InputLabel from '@/Components/InputLabel';
-import TextInput from '@/Components/TextInput';
 import Modal from '@/Components/Modal';
-import Checkbox from '@/Components/Checkbox';
-import Select from 'react-select';
-import makeAnimated  from "react-select/animated"
-
-
-export const colourOptions = [
-  { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
-  { value: 'blue', label: 'Blue', color: '#0052CC', isDisabled: true },
-  { value: 'purple', label: 'Purple', color: '#5243AA' },
-  { value: 'red', label: 'Red', color: '#FF5630', isFixed: true },
-  { value: 'orange', label: 'Orange', color: '#FF8B00' },
-  { value: 'yellow', label: 'Yellow', color: '#FFC400' },
-  { value: 'green', label: 'Green', color: '#36B37E' },
-  { value: 'forest', label: 'Forest', color: '#00875A' },
-  { value: 'slate', label: 'Slate', color: '#253858' },
-  { value: 'silver', label: 'Silver', color: '#666666' },
-];
-
-// Opções de sabores
-export const flavourOptions = [
-  { value: 'vanilla', label: 'Vanilla', rating: 'safe' },
-  { value: 'chocolate', label: 'Chocolate', rating: 'good' },
-  { value: 'strawberry', label: 'Strawberry', rating: 'wild' },
-  { value: 'salted-caramel', label: 'Salted Caramel', rating: 'crazy' },
-];
-
-// Opções agrupadas
-export const groupedOptions = [
-  {
-    label: 'Colours',
-    options: colourOptions,
-  },
-  {
-    label: 'Flavours',
-    options: flavourOptions,
-  },
-];
-
-const animatedComponents = makeAnimated();
+import Geral from '@/Components/Gera';
+import Estoque from '@/Components/Estoque';
+import Entrega from '@/Components/Entrega';
+import ProdutoRelacionado from '@/Components/ProdutoRelacionado';
 
 
 export default function AdicionarProduto() {
@@ -67,11 +30,14 @@ export default function AdicionarProduto() {
     promocional:"",
     imagem: "",
     peso: "",
+    upsells: [],
+    vendaCruzada: [],
     permissao: "Não permitir",
     dimensao:[
      {comprimento:""},
      {largura:""}, 
-     {altura: ""}
+     {altura: ""}, 
+     {peso: ''}
     ],
     atributos: [
       {
@@ -86,11 +52,7 @@ export default function AdicionarProduto() {
   }
 ]);
 
-const produtosSimulados = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-];
+
 
 const typePermissao = [
   {id:1 , permitir:"Não permitir"}, 
@@ -129,32 +91,71 @@ const closeModal = () => {
   DadoForm.grupo =  selectDado
   
  }
+const handleInputSelectUpSell = (e) => {
+  if(Array.isArray(e)){
+    const selectedValues = e.map(option => ({
+    id: option.value ,
+    nome:option.label
+    }))
+
+    setDadoForm((prevState) =>{
+      let newForm = [...prevState];
+
+      // Atualizando a propriedade vendaCruzada com os IDs selecionados
+      newForm[0] = { ...newForm[0], upsells: selectedValues };
+
+      return newForm;
+    })
+  }
+}
 
  const HandleInputChange = (e) => {
-  const { name, value } = e.target;
+  console.log(e);
+  
+  if (Array.isArray(e)) {
+    // Caso seja um Select multi seleção, e será um array de objetos
+    const selectedValues = e.map(option => ({
+      id: option.value,
+      nome: option.label
+    })); 
 
-  setDadoForm((prevState) => {
-    let newForm = [...prevState]; // Copia o estado anterior
+    
+    setDadoForm((prevState) => {
+      let newForm = [...prevState];
 
-    // Se o campo pertence à estrutura `dimensao`
-    if (["comprimento", "largura", "altura"].includes(name)) {
-      newForm[0] = {
-        ...newForm[0],
-        dimensao: newForm[0].dimensao.map((dim, index) => {
-          if (name === "comprimento" && index === 0) return { ...dim, comprimento: value };
-          if (name === "largura" && index === 1) return { ...dim, largura: value };
-          if (name === "altura" && index === 2) return { ...dim, altura: value };
-          return dim;
-        })
-      };
-    } else {
-      // Caso seja um campo normal (ex: nome, sku, preco, etc.)
-      newForm[0] = { ...newForm[0], [name]: value };
-    }
+      // Atualizando a propriedade vendaCruzada com os IDs selecionados
+      newForm[0] = { ...newForm[0], vendaCruzada: selectedValues };
 
-    return newForm;
-  });
-}; 
+      return newForm;
+    });
+  } else {
+    // Para campos normais (inputs de texto)
+    const { name, value } = e.target;
+
+    setDadoForm((prevState) => {
+      let newForm = [...prevState]; // Copia o estado anterior
+
+      // Se o campo pertence à estrutura `dimensao`
+      if (["comprimento", "largura", "altura"].includes(name)) {
+        newForm[0] = {
+          ...newForm[0],
+          dimensao: newForm[0].dimensao.map((dim, index) => {
+            if (name === "comprimento" && index === 0) return { ...dim, comprimento: value };
+            if (name === "largura" && index === 1) return { ...dim, largura: value };
+            if (name === "altura" && index === 2) return { ...dim, altura: value };
+            if (name === "peso" && index === 3) return {...dim , peso:value}
+            return dim;
+          })
+        };
+      } else {
+        // Caso seja um campo normal (ex: nome, sku, preco, etc.)
+        newForm[0] = { ...newForm[0], [name]: value };
+      }
+
+      return newForm;
+    });
+  }
+};
 
 const handleSave = () =>{
  if(selectImagem !== null){
@@ -210,211 +211,22 @@ console.log(DadoForm);
     </div>
     <div className='ml-5 '>
     {listagem === "Geral" && 
-     <>
-    <div className='flex '>
-       <InputLabel className='text-[16px]'>Nome:
-     <TextInput
-     value={DadoForm[0].nome}
-     onChange={HandleInputChange}
-     className="ml-2" 
-      placeholder="Nome do produto"
-      id="nome"
-      name="nome"
-      type="text"
-     />
-    </InputLabel>
-
-<InputLabel className='text-[16px]'>Preço:
-<TextInput
-className="ml-2" 
- placeholder="ex. 12.50"
- id="preco"
- value={DadoForm[0].preco}
-     onChange={HandleInputChange}
- name="preco"
- type="text"
-/>
-</InputLabel>
-
-<InputLabel className='text-[16px]'>Preço promocional:
-<TextInput
-className="ml-2" 
- placeholder="opcional ex.12.50"
- id="promocional"
- value={DadoForm[0].promocional}
-     onChange={HandleInputChange}
- name="promocional"
- type="text"
-/>
-</InputLabel>
-    </div>
-
-    <InputLabel className='text-[16px]'>SKU:
-<TextInput
-className="ml-2 mt-2" 
- placeholder="sku"
- value={DadoForm[0].sku}
-     onChange={HandleInputChange}
- id="sku"
- name="sku"
- type="text"
-/>
-</InputLabel>
-<InputLabel className='text-[16px]'>Descrição:
-<textarea
-value={DadoForm[0].descricao}
-onChange={HandleInputChange}
-className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" 
- placeholder="Descricao do produto"
- id="descricao"
- name="descricao"
- type="text"
-></textarea>
-</InputLabel>
-<InputLabel>
-Escolher arquivo: 
-<PrimaryButton onClick={openModal}>Escolher Imagem</PrimaryButton>
-{DadoForm[0].imagem && 
-<div className='flex justify-end'>
-<img src={DadoForm[0].imagem} className='w-28 h-28' alt=""  />
-</div>
-}
-
-</InputLabel>
-   </>
+    <Geral DadoForm={DadoForm} openModal={openModal} setDadoForm={setDadoForm}/>
     }
     {listagem === "Estoque" && 
-    <div className='mt-3'>
-      <InputLabel className='text-[16px]'>Estoque quantidade:
-     <TextInput
-     value={DadoForm[0].quantidade}
-     onChange={HandleInputChange}
-     className="ml-2" 
-      placeholder="ex. 99"
-      id="quantidade"
-      name="quantidade"
-      type="text"
-     />
-    </InputLabel>
-
-    <InputLabel className='text-[16px]'>Gestão de Estoque:
-    < Checkbox className='ml-2'
-    onChange={handleCheckedEstoque}
-    /> &nbsp; Acompanhe a quantidade de estoque para este produto
-    </InputLabel>
-    {isCheckedEstoque === true && 
-    <div>
-     <InputLabel className='mt-2'>
-      Limiar estoque baixo: 
-      <TextInput
-      value={DadoForm[0].limiarEstoque}
-      onChange={HandleInputChange}
-      name="limiarEstoque"
-      id="limiarEstoque" 
-      type="number"
-      placeholder="Limiar esse produto(2)"
-      />
-     </InputLabel>
-  
-      <InputLabel className='flex mt-2'>
-      <p>Permitir Encomendas? </p>
-      <div className='ml-2'>
-        <select name="permissao"  id="permisao" className='  rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
-        onChange={HandleInputChange}
-        value={DadoForm[0].permissao}
-        
-        >
-        {typePermissao.map((permissao) =>(
-          <option key={permissao.id}>{permissao.permitir}</option>
-        ))}
-        </select>
-      </div>
-      </InputLabel>
-    
-    </div>
-    }
-    {isCheckedEstoque === false && 
-     <div className='mt-2'>
-      <InputLabel>
-      Status do Estoque:
-      <select name="status" id="status"
-      onChange={HandleInputChange}
-      className='ml-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
-      value={DadoForm[0].status}
-      >
-        {StatusEstoque.map((statusE) =>(
-          <option key={statusE.id} value={statusE.estoque}>{statusE.estoque}</option>
-        ))}
-      </select>
-      </InputLabel>
-      <InputLabel className='mt-2'> 
-      Vendido  individualmente <Checkbox onChange={CheckLimitarCompras}/> Limitar compras 1 item por pedido
-      </InputLabel>
-     </div>
-    }
-   
-    </div>
+    <Estoque  DadoForm={DadoForm} setDadoForm={setDadoForm} HandleInputChange={HandleInputChange} handleCheckedEstoque={handleCheckedEstoque} 
+    isCheckedEstoque={isCheckedEstoque} StatusEstoque={StatusEstoque}
+    CheckLimitarCompras={CheckLimitarCompras} typePermissao={typePermissao}
+    />
    } 
    {listagem === "Entrega" && 
-    <div className='mt-3'>
-      <InputLabel className='flex items-center'>
-       <p>Peso (KG):</p>
-       <TextInput 
-       name="peso"
-       id="peso"
-       onChange={HandleInputChange}
-       value={DadoForm[0].peso}
-       className="mt-1"
-       placeholder="0"
-       type="text"
-       />
-      </InputLabel>
-      <InputLabel className='flex items-center'>
-       <p>Dimensões (cm):</p> <div className='flex'>
-       <TextInput  className="m-1"
-       placeholder="comprim"
-       name="comprimento"
-      id="comprimento"
-       value={DadoForm[0].dimensao[0].comprimento}
-       onChange={HandleInputChange}
-       />
-       <TextInput  className="m-1"
-       placeholder="Largura"
-       name="largura"
-       value={DadoForm[0].dimensao[0].largura}
-       onChange={HandleInputChange}
-       id="largura"
-       />
-       <TextInput  className="m-1"
-        name="altura"
-       id="altura"
-       value={DadoForm[0].dimensao[0].altura}
-       onChange={HandleInputChange}
-       placeholder="Altura"/>
-       </div>
-      </InputLabel>
-    </div>
+   <Entrega DadoForm={DadoForm} HandleInputChange={HandleInputChange}/>
    }
    {listagem === "Produtos Relacionados" && 
-   <div className='mt-3 '>
-    <InputLabel>
-    Upsells: 
-    <Select
-        closeMenuOnSelect={false}
-        components={animatedComponents}
-        defaultValue={[colourOptions[4], colourOptions[5]]}
-        isMulti
-        options={colourOptions}
-      />
-    </InputLabel>
-    <InputLabel className='mt-2'>
-    Venda Cruzada: <TextInput 
-    placeholder="Pesquisar produto"
-    name="vendaCruzada" 
-    id="vendaCruzada"
-    />
-    </InputLabel>
-   </div>
+  <ProdutoRelacionado
+  DadoForm={DadoForm} handleInputSelectUpSell={handleInputSelectUpSell}
+  HandleInputChange={HandleInputChange}
+  />
    }
     </div>
    </div>

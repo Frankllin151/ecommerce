@@ -23,3 +23,6 @@
 - Estoque finalização
 # [1.0.0] - 2025-02-22 
 - Multi Select no Adicionar Produto (para produto relacionados)
+# [1.0.0] - 2025-02-25 
+- Refactor de codigo 
+- Criação de componentes com props para deixar estrutura mais limpa
