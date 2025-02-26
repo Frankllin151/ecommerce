@@ -26,3 +26,5 @@
 # [1.0.0] - 2025-02-25 
 - Refactor de codigo 
 - Criação de componentes com props para deixar estrutura mais limpa
+# [1.0.0] - 2025-02-26 
+- bugago o atributos (input valor e nome)

@@ -1,17 +1,25 @@
 import PrimaryButton from '@/Components/PrimaryButton';
 import AuthenticatedLayout from '../Layouts/AuthenticatedLayout';
-import  {useState}  from 'react';
+import  {useState, useEffect}  from 'react';
+import { Head } from '@inertiajs/react';
 import Modal from '@/Components/Modal';
 import Geral from '@/Components/Gera';
 import Estoque from '@/Components/Estoque';
 import Entrega from '@/Components/Entrega';
+import TextInput from '@/Components/TextInput';
 import ProdutoRelacionado from '@/Components/ProdutoRelacionado';
+import InputLabel from '@/Components/InputLabel';
+
+//import Atributos from '@/Components/Atributos';
+
 
 
 export default function AdicionarProduto() {
  const [selectDado , setSelectDado] = useState("simple");
  const [isModalOpen, setIsModalOpen] = useState(false);
  const [selectImagem , SetSelectImagem] = useState(null);
+ const [atributo, setAtributo] = useState("");
+ const [containerAtributo, setContainerAtributo] = useState([]);
  const [listagem, setListagem] = useState("Geral");
  const [isCheckedEstoque , setIsCheckedEstoque] = useState(false);
  const [limitarCompras, setLimitarCompras] = useState(false);
@@ -39,16 +47,7 @@ export default function AdicionarProduto() {
      {altura: ""}, 
      {peso: ''}
     ],
-    atributos: [
-      {
-        tipo: "",  // Exemplo de tipo de atributo
-        valores: "" // Exemplos de valores para o atributo
-      },
-      {
-        tipo: "Cor",
-        valores: ""
-      }
-    ]
+    atributos: []
   }
 ]);
 
@@ -110,7 +109,7 @@ const handleInputSelectUpSell = (e) => {
 }
 
  const HandleInputChange = (e) => {
-  console.log(e);
+ 
   
   if (Array.isArray(e)) {
     // Caso seja um Select multi seleção, e será um array de objetos
@@ -179,10 +178,42 @@ const handleCheckedEstoque = () =>{
   
 }
 
-console.log(DadoForm);
+//console.log(DadoForm);
+
+const handleAddAtributosbutton = () => {
+if(atributo.trim() === "") return;
+setContainerAtributo([...containerAtributo, 
+  {id:containerAtributo.length +1 , nome_container:atributo, valor: "", 
+  nome:"", isVisible:false}]);
+  setAtributo("")
+
+}
+
+
+const toggleContainerVisibility = (id) => {  
+const updatepContainer = containerAtributo.map(item =>{
+  if(item.id === id){
+    return {...item, isVisible: !item.isVisible}
+  }
+  return item;
+});
+setContainerAtributo(updatepContainer);
+}
+
+const handleChangeValorAndNomeAtributo = (id, campo , value) =>{
+  console.log("ID:", id, "Campo:", campo, "Valor:", valor);
+ 
+}
+
+const handleSalveAtribute = (id, nome) =>{
+  console.log(id, nome);
+  
+}
+console.log(containerAtributo);
 
   return (
     <AuthenticatedLayout>
+      <Head title="Adicionar Produto" />
      <div action="">
     
       <div className='px-3 py-3 bg-white shadow-sm sm:rounded-lg'>
@@ -227,6 +258,55 @@ console.log(DadoForm);
   DadoForm={DadoForm} handleInputSelectUpSell={handleInputSelectUpSell}
   HandleInputChange={HandleInputChange}
   />
+   }
+   {listagem === "Atributos" && 
+   <div className="mt-2">
+   <TextInput 
+   name="atributo"
+   value={atributo}
+   onChange={(e) => setAtributo(e.target.value)}
+   placeholder="Add Atributo"
+   />
+   <PrimaryButton className="ml-2"
+   onClick={handleAddAtributosbutton} 
+   >Add</PrimaryButton>
+   {containerAtributo.map((index) =>(
+   <div key={index.id} className={`container ${index.nome_container}`}>
+
+   <div className='mt-3 cursor-pointer w-[450px] rounded-sm bg-slate-200 p-3'
+   onClick={() => toggleContainerVisibility(index.id)}>  
+   <h5>{index.nome_container}</h5>
+   </div>
+  {index.isVisible && (
+    <>
+     <div className='mt-1 flex items-center w-full '>
+    <InputLabel>
+    Nome:
+    <TextInput
+      name="nome"
+      value={index.nome}
+      onChange={(e) => handleChangeValorAndNomeAtributo( index.id,e.target.value , "nome")}
+      placeholder="ex.Tamanho ou Cor"
+      />
+    </InputLabel>
+      <InputLabel>
+      Valor(s): <textarea name="valor" id="valor"
+      placeholder="Insira algum texto descritivo. Use '|' para separar valores diferentes." 
+     
+      value={index.valor}
+      onChange={(e) => handleChangeValorAndNomeAtributo( index.id ,e.target.value , "valor" )}
+      className='ml-2 w-[450px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
+      ></textarea>
+      </InputLabel>
+     </div>
+     <PrimaryButton 
+     onClick={() => handleSalveAtribute(index.id , index.nome_container)}>Salvar Atributo</PrimaryButton>
+     </>
+  )}
+   </div>
+   ))}
+  
+ </div>
    }
     </div>
    </div>
