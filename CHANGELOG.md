@@ -28,3 +28,5 @@
 - Criação de componentes com props para deixar estrutura mais limpa
 # [1.0.0] - 2025-02-26 
 - bugago o atributos (input valor e nome)
+# [1.0.0] - 2025-02-27
+- Bug resolvido

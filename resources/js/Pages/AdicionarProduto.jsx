@@ -178,12 +178,12 @@ const handleCheckedEstoque = () =>{
   
 }
 
-//console.log(DadoForm);
+console.log(DadoForm);
 
 const handleAddAtributosbutton = () => {
 if(atributo.trim() === "") return;
 setContainerAtributo([...containerAtributo, 
-  {id:containerAtributo.length +1 , nome_container:atributo, valor: "", 
+  {id:containerAtributo.length +1 , nome_atributo:atributo, valor: "", 
   nome:"", isVisible:false}]);
   setAtributo("")
 
@@ -200,16 +200,28 @@ const updatepContainer = containerAtributo.map(item =>{
 setContainerAtributo(updatepContainer);
 }
 
-const handleChangeValorAndNomeAtributo = (id, campo , value) =>{
-  console.log("ID:", id, "Campo:", campo, "Valor:", valor);
+const handleChangeValorAndNomeAtributo = (id, value, campo) => {
+  setContainerAtributo(prevState =>
+    prevState.map(item =>
+      item.id === id ? { ...item, [campo]: value } : item
+    )
+  );
  
-}
+};
 
-const handleSalveAtribute = (id, nome) =>{
-  console.log(id, nome);
+const handleSalveAtribute = (index) =>{
+setDadoForm((prevState) => prevState.map((item)=>({
+  ...item, 
+  atributos:[
+    ...item.atributos.filter(attr => attr.id !== index.id), //Evita dados duplicatos
+    {id:index.id , nome_atributo:index.nome , valor:index.valor}
+  ]
+})))
+ 
   
 }
-console.log(containerAtributo);
+
+
 
   return (
     <AuthenticatedLayout>
@@ -275,7 +287,7 @@ console.log(containerAtributo);
 
    <div className='mt-3 cursor-pointer w-[450px] rounded-sm bg-slate-200 p-3'
    onClick={() => toggleContainerVisibility(index.id)}>  
-   <h5>{index.nome_container}</h5>
+   <h5>{index.nome_atributo}</h5>
    </div>
   {index.isVisible && (
     <>
@@ -285,7 +297,7 @@ console.log(containerAtributo);
     <TextInput
       name="nome"
       value={index.nome}
-      onChange={(e) => handleChangeValorAndNomeAtributo( index.id,e.target.value , "nome")}
+      onChange={(e) => handleChangeValorAndNomeAtributo(index.id, e.target.value, "nome")}
       placeholder="ex.Tamanho ou Cor"
       />
     </InputLabel>
@@ -294,13 +306,13 @@ console.log(containerAtributo);
       placeholder="Insira algum texto descritivo. Use '|' para separar valores diferentes." 
      
       value={index.valor}
-      onChange={(e) => handleChangeValorAndNomeAtributo( index.id ,e.target.value , "valor" )}
+      onChange={(e) => handleChangeValorAndNomeAtributo(index.id, e.target.value, "valor")}
       className='ml-2 w-[450px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'
       ></textarea>
       </InputLabel>
      </div>
      <PrimaryButton 
-     onClick={() => handleSalveAtribute(index.id , index.nome_container)}>Salvar Atributo</PrimaryButton>
+     onClick={() => handleSalveAtribute(index)}>Salvar Atributo</PrimaryButton>
      </>
   )}
    </div>
