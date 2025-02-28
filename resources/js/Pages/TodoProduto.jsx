@@ -5,13 +5,15 @@ import Modal from '@/Components/Modal';
 import { useState } from 'react';
 import TextInput from '@/Components/TextInput';
 import InputLabel from '@/Components/InputLabel';
+import ProdutoAll from '@/Components/ProdutoAll';
 export default function TodoProduto()
 {
   const [openmodal , setOpenModal] = useState(false);
   const [categoria , setCategoria] = useState({
     categoria: ""
   });
-  const {props}= usePage()
+ 
+  
  
    
   const handleOpenModal = () =>{
@@ -69,6 +71,9 @@ const key= e.target.name;
     </div>
      </div>
     </Modal>
+<ProdutoAll/>
+
+
     </AuthenticatedLayout>
     </>
   )

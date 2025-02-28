@@ -5,8 +5,9 @@ export default function Geral({DadoForm , openModal, setDadoForm ,categoria})
 {
 
 
+
   const HandleInputChange = (e) => {
-    console.log(e);
+   
     
     if (Array.isArray(e)) {
       // Caso seja um Select multi seleção, e será um array de objetos
@@ -108,7 +109,7 @@ export default function Geral({DadoForm , openModal, setDadoForm ,categoria})
     onChange={HandleInputChange}
     className='rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 '>
       {categoria.map((item) =>{
-        return <option value={item.categoria}key={item.id}>{item.categoria}</option>
+        return <option value={item.nome}key={item.id}>{item.nome}</option>
       })}
      
     </select>

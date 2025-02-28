@@ -1,7 +1,7 @@
 import PrimaryButton from '@/Components/PrimaryButton';
 import AuthenticatedLayout from '../Layouts/AuthenticatedLayout';
 import  {useState, useEffect}  from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import Modal from '@/Components/Modal';
 import Geral from '@/Components/Gera';
 import Estoque from '@/Components/Estoque';
@@ -51,11 +51,7 @@ export default function AdicionarProduto() {
   }
 ]);
 
-const categoria = [
-  {id:1 , categoria: "Sem Categoria"}, 
-  {id:2 ,categoria: "Feminino"}, 
-  {id:3 , categoria: "Masculino"}
-]
+const categoria = usePage().props.categorias
 
 const typePermissao = [
   {id:1 , permitir:"Não permitir"}, 

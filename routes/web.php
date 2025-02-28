@@ -20,7 +20,7 @@ Route::get('/dashboard', [TipoUsuarioController::class, 'tipoUsuario'])->middlew
 Route::get("/todoproduto" , [TipoUsuarioController::class, "todoProduto"])->middleware(["admin" , 'verified'])->name('todoproduto');
 Route::get("/todoproduto/adicionarproduto", [AdicionarProdutoController::class , "AdicionarProduto"])->middleware(["admin" , "verified"])->name("adicionarProduto");
 Route::post("/todoproduto/add-post-categoria", [AdicionarProdutoController::class, "addCategoria"])->middleware(["admin" , "verified"])->name("categoria");
-
+Route::delete("/todoproduto/excluir-produto/{id}", [AdicionarProdutoController::class, "excluirProduto"])->middleware(["admin" , "verified"])->name("excluir-produto");
 
 
 Route::get('/minha-conta' , [TipoUsuarioController::class , 'minhaConta'])->middleware(['auth', 'verified'])->name('minha-conta');

@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Categorias;
+use Illuminate\Support\Facades\Redis;
 
 class AdicionarProdutoController extends Controller
 {
     //
     public function AdicionarProduto()
     {
-        return Inertia::render("AdicionarProduto");
+        $categorias= Categorias::all();
+        return Inertia::render("AdicionarProduto",[
+            'categorias' =>  $categorias
+        ]);
     }
     public function addCategoria(Request $request){
         $data = $request->all(); 
@@ -24,5 +28,9 @@ class AdicionarProdutoController extends Controller
             "descricao" => null
         ]);
         return redirect()->route('todoproduto')->with('success', 'Categoria adicionada com sucesso.');
+    }
+    public function excluirProduto($id)
+    {
+        dd($id);
     }
 }

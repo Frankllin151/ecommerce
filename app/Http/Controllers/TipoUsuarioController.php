@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorias;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -27,6 +28,7 @@ class TipoUsuarioController extends Controller
 
     public function todoProduto()
     {
+      
         return Inertia::render("TodoProduto");
     }
 }

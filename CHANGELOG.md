@@ -30,6 +30,8 @@
 - bugago o atributos (input valor e nome)
 # [1.0.0] - 2025-02-27
 - Bug resolvido
-# 2025-02-27 
+# 2025-02-28
 - Criação da tabela categoria
 - inserção de categoria sem descrição 
+- Incluso font-end do todos produto. falta apenas lógica incluir os dados para inertia e criar o tabela no banco
+- Implementação da funcionalidade de exclusão de produto único quase pronta. Falta ajustar a lógica de exclusão no  backend para garantir que o produto seja removido corretamente.
