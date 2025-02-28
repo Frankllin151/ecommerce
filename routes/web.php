@@ -19,7 +19,7 @@ Route::get('/dashboard', [TipoUsuarioController::class, 'tipoUsuario'])->middlew
 
 Route::get("/todoproduto" , [TipoUsuarioController::class, "todoProduto"])->middleware(["admin" , 'verified'])->name('todoproduto');
 Route::get("/todoproduto/adicionarproduto", [AdicionarProdutoController::class , "AdicionarProduto"])->middleware(["admin" , "verified"])->name("adicionarProduto");
-
+Route::post("/todoproduto/add-post-categoria", [AdicionarProdutoController::class, "addCategoria"])->middleware(["admin" , "verified"])->name("categoria");
 
 
 

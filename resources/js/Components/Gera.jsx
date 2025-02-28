@@ -1,8 +1,10 @@
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
-export default function Geral({DadoForm , openModal, setDadoForm})
+export default function Geral({DadoForm , openModal, setDadoForm ,categoria})
 {
+
+
   const HandleInputChange = (e) => {
     console.log(e);
     
@@ -100,6 +102,16 @@ export default function Geral({DadoForm , openModal, setDadoForm})
      name="sku"
      type="text"
     />
+    </InputLabel>
+    <InputLabel className='mt-2'>
+    Categoria: <select name="categoria" id="" value={DadoForm.categoria}
+    onChange={HandleInputChange}
+    className='rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 '>
+      {categoria.map((item) =>{
+        return <option value={item.categoria}key={item.id}>{item.categoria}</option>
+      })}
+     
+    </select>
     </InputLabel>
     <InputLabel className='text-[16px]'>Descrição:
     <textarea

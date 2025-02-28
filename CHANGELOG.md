@@ -30,3 +30,6 @@
 - bugago o atributos (input valor e nome)
 # [1.0.0] - 2025-02-27
 - Bug resolvido
+# 2025-02-27 
+- Criação da tabela categoria
+- inserção de categoria sem descrição 
