@@ -11,7 +11,7 @@ Route::get('/', function () {
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'phpVersion' => PHP_VERSION
     ]);
 });
 
@@ -19,6 +19,7 @@ Route::get('/dashboard', [TipoUsuarioController::class, 'tipoUsuario'])->middlew
 
 Route::get("/todoproduto" , [TipoUsuarioController::class, "todoProduto"])->middleware(["admin" , 'verified'])->name('todoproduto');
 Route::get("/todoproduto/adicionarproduto", [AdicionarProdutoController::class , "AdicionarProduto"])->middleware(["admin" , "verified"])->name("adicionarProduto");
+Route::post("/todoproduto/adicionarpost", [AdicionarProdutoController::class, "CreateprodutoPost"])->middleware(["admin", "verified"])->name("createprodutopost");
 Route::post("/todoproduto/add-post-categoria", [AdicionarProdutoController::class, "addCategoria"])->middleware(["admin" , "verified"])->name("categoria");
 Route::delete("/todoproduto/excluir-produto/{id}", [AdicionarProdutoController::class, "excluirProduto"])->middleware(["admin" , "verified"])->name("excluir-produto");
 

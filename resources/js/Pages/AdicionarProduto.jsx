@@ -1,13 +1,14 @@
 import PrimaryButton from '@/Components/PrimaryButton';
 import AuthenticatedLayout from '../Layouts/AuthenticatedLayout';
 import  {useState, useEffect}  from 'react';
-import { Head, usePage } from '@inertiajs/react';
+import { Head, router, usePage } from '@inertiajs/react';
 import Modal from '@/Components/Modal';
 import Geral from '@/Components/Gera';
 import Estoque from '@/Components/Estoque';
 import Entrega from '@/Components/Entrega';
 import ProdutoRelacionado from '@/Components/ProdutoRelacionado';
 import Atributos from '@/Components/Atributos';
+
 
 //import Atributos from '@/Components/Atributos';
 
@@ -221,7 +222,9 @@ setDadoForm((prevState) => prevState.map((item)=>({
   
 }
 
-
+const handleSubmitCreateProduto = () =>{
+ router.post("/todoproduto/adicionarpost" , DadoForm[0])
+}
 
   return (
     <AuthenticatedLayout>
@@ -236,7 +239,8 @@ setDadoForm((prevState) => prevState.map((item)=>({
           <option value="variavel">Produto Variável</option>
           <option value="grupo">Produto Grupo</option>
          </select>
-         <a href="" className='inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900'>publicar</a>
+        
+         <PrimaryButton  onClick={handleSubmitCreateProduto}>publicar</PrimaryButton>
         </div>
    <div className='flex '>
     <div className='w-64 '>

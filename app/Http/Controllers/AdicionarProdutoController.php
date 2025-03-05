@@ -29,6 +29,11 @@ class AdicionarProdutoController extends Controller
         ]);
         return redirect()->route('todoproduto')->with('success', 'Categoria adicionada com sucesso.');
     }
+
+    public function createprodutopost(Request $request)
+    {
+    dd($request->all());
+    }
     public function excluirProduto($id)
     {
         dd($id);
