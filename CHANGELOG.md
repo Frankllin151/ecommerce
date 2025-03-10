@@ -37,3 +37,5 @@
 - Implementação da funcionalidade de exclusão de produto único quase pronta. Falta ajustar a lógica de exclusão no  backend para garantir que o produto seja removido corretamente.
 # 2025-03-05
 - Bug no array de dimensão no DadoForm
+# 2025-03-10
+- Routa para média sem o layout
