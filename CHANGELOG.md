@@ -39,3 +39,4 @@
 - Bug no array de dimensão no DadoForm
 # 2025-03-10
 - Routa para média sem o layout
+- Layout do Media(midia) já concluido só falta upload  das midias
