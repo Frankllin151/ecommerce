@@ -40,3 +40,5 @@
 # 2025-03-10
 - Routa para média sem o layout
 - Layout do Media(midia) já concluido só falta upload  das midias
+# 2025-03-12
+- Modal para upload

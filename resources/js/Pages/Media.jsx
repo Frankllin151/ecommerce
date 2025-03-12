@@ -3,13 +3,15 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
-
+import Modal from '@/Components/Modal';
 const mediaTypes = ['Imagens', 'Arquivos', 'Planilhas', 'Vídeos', 'Áudios'];
 const mediaDates = ['Julho 2024', 'Abril 2023', 'Janeiro 2023', 'Dezembro 2022'];
 
 const Media = () => {
   const [selectedType, setSelectedType] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [uploadFile, setUploadFile] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedMedia, setSelectedMedia] = useState([]);
   const [mediaItems, setMediaItems] = useState([
@@ -55,18 +57,34 @@ const Media = () => {
       (selectedType === '' || item.type === selectedType) &&
       (selectedDate === '' || item.date === selectedDate) &&
       item.type.includes(searchTerm)
-     
       
   );
 
+ const handleUpload = () => {
+  setIsUploadModalOpen(true);
+};
 
+const handleUploadFileChange = (e) => {
+  setUploadFile(e.target.files[0]);
+};
+
+const handleUploadSubmit = (e) => {
+  e.preventDefault();
+  if (uploadFile) {
+    // Lógica para enviar o arquivo para o servidor
+    console.log('Arquivo para upload:', uploadFile);
+    // Fechar o modal após o upload
+    setIsUploadModalOpen(false);
+    setUploadFile(null);
+  }
+};
   return (
     <AuthenticatedLayout>
       <div className="p-6 bg-white shadow-sm sm:rounded-lg">
        <div className='flex'>
        <h1 className="text-2xl mb-4">Gerenciamento de Mídia</h1>
        <div className='mb-4 ml-2'>
-       <PrimaryButton>Adicionar Nova mídia</PrimaryButton>
+       <PrimaryButton  onClick={handleUpload}>Adicionar Nova mídia</PrimaryButton>
        </div>
        </div>
         <div className="flex justify-between mb-4">
@@ -136,6 +154,26 @@ const Media = () => {
           ))}
         </div>
       </div>
+      <Modal show={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)}>
+        <form onSubmit={handleUploadSubmit} encType="multipart/form-data">
+          <div className="p-6">
+            <h2 className="text-lg font-bold mb-4">Upload de Mídia</h2>
+            <InputLabel for="uploadFile" value="Selecione o arquivo" />
+            <input
+              type="file"
+              id="uploadFile"
+              onChange={handleUploadFileChange}
+              className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            />
+          </div>
+          <div className="flex justify-end p-6">
+            <PrimaryButton onClick={() => setIsUploadModalOpen(false)} className="mr-2">
+              Cancelar
+            </PrimaryButton>
+            <PrimaryButton type="submit">Upload</PrimaryButton>
+          </div>
+        </form>
+      </Modal>
     </AuthenticatedLayout>
   );
 };
