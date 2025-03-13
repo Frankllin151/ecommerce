@@ -42,3 +42,5 @@
 - Layout do Media(midia) já concluido só falta upload  das midias
 # 2025-03-12
 - Modal para upload
+# 2025-03-13
+- Dentro do MediaController temos a função já para executar o upload dentro da pasta de upload e a função no Media.jsx  para já fazer a requsição falta apenas inserir  o caminho para pasta(criar) e inserir o caminho correto no banco de dados (mysql) 

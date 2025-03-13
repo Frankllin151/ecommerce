@@ -12,4 +12,9 @@ class MediaController extends Controller
     {
         return Inertia::render("Media");
     }
+
+    public function postArquivo(Request $request)
+    {
+     dd($request->all());
+    }
 }

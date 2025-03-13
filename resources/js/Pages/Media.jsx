@@ -4,6 +4,8 @@ import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
 import Modal from '@/Components/Modal';
+import { router } from '@inertiajs/react';
+
 const mediaTypes = ['Imagens', 'Arquivos', 'Planilhas', 'Vídeos', 'Áudios'];
 const mediaDates = ['Julho 2024', 'Abril 2023', 'Janeiro 2023', 'Dezembro 2022'];
 
@@ -71,11 +73,18 @@ const handleUploadFileChange = (e) => {
 const handleUploadSubmit = (e) => {
   e.preventDefault();
   if (uploadFile) {
-    // Lógica para enviar o arquivo para o servidor
-    console.log('Arquivo para upload:', uploadFile);
-    // Fechar o modal após o upload
-    setIsUploadModalOpen(false);
-    setUploadFile(null);
+    const formData = new FormData();
+    formData.append('file', uploadFile);
+
+    router.post('/media/postarquivo', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      onSuccess: () => {
+        setIsUploadModalOpen(false);
+        setUploadFile(null);
+      },
+    });
   }
 };
   return (

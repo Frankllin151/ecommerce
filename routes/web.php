@@ -23,6 +23,8 @@ Route::post("/todoproduto/adicionarpost", [AdicionarProdutoController::class, "C
 Route::post("/todoproduto/add-post-categoria", [AdicionarProdutoController::class, "addCategoria"])->middleware(["admin" , "verified"])->name("categoria");
 Route::delete("/todoproduto/excluir-produto/{id}", [AdicionarProdutoController::class, "excluirProduto"])->middleware(["admin" , "verified"])->name("excluir-produto");
 Route::get("/media",[MediaController::class, "todasMedias"])->middleware(["admin", "verified"])->name("media");
+Route::post("/media/postarquivo", [MediaController::class, "postArquivo"])->middleware(["admin", "verified"])->name("upload");
+
 // contas dos usuarios (clientes)
 Route::get('/minha-conta' , [TipoUsuarioController::class , 'minhaConta'])->middleware(['auth', 'verified'])->name('minha-conta');
 Route::middleware('auth')->group(function () {
