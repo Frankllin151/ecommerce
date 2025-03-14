@@ -15,6 +15,8 @@ class MediaController extends Controller
 
     public function postArquivo(Request $request)
     {
-     dd($request->all());
+        $file = $request->file('file');
+        $mimeType = $file->getMimeType();
+        dd($mimeType);
     }
 }
