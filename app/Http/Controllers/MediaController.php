@@ -20,12 +20,12 @@ class MediaController extends Controller
        switch($mimeType){
         case "image/jpeg":
         case "image/png": 
-        // logica upload
+        dd("image");
        case "application/pdf":
-       // logica upload
+        dd("pdf");
        case 'application/vnd.ms-excel':
         case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-        //logica upload
+            dd("vnd ou excel");
         default:
         return response()->json(['error' => 'Tipo de arquivo não suportado.'], 400);
        }
